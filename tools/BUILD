@@ -1,20 +1,4 @@
 #########################################################################################
-# Xcode project generation
-# `bazel run //utils:xcodeproj`
-
-load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcodeproj")
-
-xcodeproj(
-    name = "xcodeproj",
-    project_name = "BazelExample",
-    tags = ["manual"],
-    top_level_targets = [
-        "//projects/howdy",
-    ],
-)
-#########################################################################################
-
-#########################################################################################
 # Compilation database generation (clangd, vscode, sublime-text, Zed, vim, emacs, ...)
 # `bazel run //utils:refresh_compile_commands`
 
