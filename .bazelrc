@@ -1,0 +1,37 @@
+build --enable_bzlmod
+
+# Prevent invalid caching if input files are modified during a build.
+build --experimental_guard_against_concurrent_changes
+
+# In opt mode, bazel by default builds both PIC and non-PIC object files for
+# tests vs binaries. We don't need this feature and it slows down opt builds
+# considerably.
+# TODO: This prevents rules_xcodeproj from functioning correctly
+#build --force_pic
+
+# Shared objects take up more space. With fast linkers and binaries that aren't
+# super large, the benefits of shared objects are minimal.
+build --dynamic_mode=off
+
+# Rely on compiler flags to compile with debug info/strip rather than stripping
+# based on compilation_mode.
+build --strip=never
+
+# Add layering check to all projects.
+build --features=layering_check
+
+# Force a modern c++ version
+build --cxxopt=-std=c++17 --host_cxxopt=-std=c++17
+
+# Annoy everyone until they address the issues
+build --copt=-Wall --copt=-Werror --copt=-Wno-error=unused --host_copt=-Wall
+
+# We like to be warned about deprecations but it shouldn't break the build
+build --copt=-Wno-error=deprecated --host_copt=-Wno-error=deprecated
+
+# The user.bazelrc file is not checked in but available for local mods.
+# Always keep this at the end of the file so that user flags override.
+try-import %workspace%/user.bazelrc
+
+# One example of how to use user.bazelrc is to enable disk caches:
+# build --disk_cache=/path/to/my/cache
