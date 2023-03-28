@@ -10,7 +10,9 @@ xcodeproj(
     project_name = "BazelExample",
     tags = ["manual"],
     top_level_targets = [
-        "//projects/howdy",
+        "//projects/howdy:howdy",
+        "//projects/howdy:tests",
+        "//projects/example:tests",
     ],
 )
 #########################################################################################
