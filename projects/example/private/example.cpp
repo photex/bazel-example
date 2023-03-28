@@ -21,7 +21,7 @@ int Example::GetBar() const
 	return data.bar();
 }
 
-std::string Example::GetName() const
+std::string const &Example::GetName() const
 {
 	return data.name();
 }

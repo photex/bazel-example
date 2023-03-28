@@ -2,7 +2,6 @@
 // Created by Chip Collier on 27.03.23.
 //
 
-
 #pragma once
 
 #include "Example.pb.h"
@@ -11,10 +10,10 @@ class Example
 {
 	ExampleData data;
 public:
-	Example(int const foo);
+	Example(int foo);
 
 	[[nodiscard]]
-	std::string GetName() const;
+	std::string const& GetName() const;
 
 	[[nodiscard]]
 	int GetFoo() const;

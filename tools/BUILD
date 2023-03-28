@@ -1,6 +1,6 @@
 #########################################################################################
 # Compilation database generation (clangd, vscode, sublime-text, Zed, vim, emacs, ...)
-# `bazel run //utils:refresh_compile_commands`
+# `bazel run //tools:refresh_compile_commands`
 
 load("@hedron_compile_commands//:refresh_compile_commands.bzl", "refresh_compile_commands")
 

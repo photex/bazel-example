@@ -1,0 +1,19 @@
+directories:
+  # Add the directories you want added as source here
+  # By default, we've added your entire workspace ('.')
+  .
+  # This is the intermediates folder created by the generated xcode project
+  -build
+  # This is the symlink to bazel externals created by the compilation database generator
+  -external
+  # This is the cache folder used by clangd
+  -.cache
+
+# Automatically includes all relevant targets under the 'directories' above
+derive_targets_from_directories: true
+
+targets:
+  # If source code isn't resolving, add additional targets that compile it here
+
+additional_languages:
+  python
