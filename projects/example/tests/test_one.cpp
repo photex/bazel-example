@@ -5,11 +5,12 @@
 
 TEST(ExampleSuite, DoesStuff)
 {
-	Example ex(20);
+	auto const test_val = 20;
+	Example example(test_val);
 
-	ASSERT_EQ(ex.GetName(), "John Doe");
-	ASSERT_EQ(ex.GetFoo(), 20);
-	ASSERT_EQ(ex.GetBar(), 40);
+	ASSERT_EQ(example.GetName(), "John Doe");
+	ASSERT_EQ(example.GetFoo(), test_val);
+	ASSERT_EQ(example.GetBar(), test_val + test_val);
 }
 
 TEST(ExampleSuite, AndSomeOtherStuff)

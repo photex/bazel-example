@@ -18,5 +18,8 @@ int main(int argc, char* argv[])
 	fmt::print("Example.foo: {}\n", example.GetFoo());
 	fmt::print("Example.bar: {}\n", example.GetBar());
 
+	auto buf = example.AsString();
+	fmt::print("Example serialized is {} bytes long.\n", buf.size());
+
 	return result;
 }

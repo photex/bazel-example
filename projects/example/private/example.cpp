@@ -9,6 +9,8 @@ Example::Example(int const foo)
 	data.set_name("John Doe");
 	data.set_foo(foo);
 	data.set_bar(foo + foo);
+	auto ser = data.SerializeAsString();
+	assert(!ser.empty());
 }
 
 int Example::GetFoo() const
@@ -21,7 +23,12 @@ int Example::GetBar() const
 	return data.bar();
 }
 
-std::string const &Example::GetName() const
+std::string const& Example::GetName() const
 {
 	return data.name();
+}
+
+std::string Example::AsString() const
+{
+	return data.SerializeAsString();
 }

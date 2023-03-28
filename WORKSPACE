@@ -21,33 +21,8 @@ http_archive(
     # When you first run this tool, it'll recommend a sha256 hash to put here with a message like:
     # "DEBUG: Rule 'hedron_compile_commands' indicated that a canonical reproducible form can be obtained by
     # modifying arguments sha256 = ..."
+    sha256 = "085bde6c5212c8c1603595341ffe7133108034808d8c819f8978b2b303afc9e7"
 )
 load("@hedron_compile_commands//:workspace_setup.bzl", "hedron_compile_commands_setup")
 hedron_compile_commands_setup()
-########################################################################################################################
-
-
-########################################################################################################################
-# LLVM itself (and all compilers and tools) can be built from source and used as a toolchain in a Bazel build.
-# It's the ultimate weapon. It's critical that you make use of disk-caching or remote caching in these cases though.
-
-# Replace with the LLVM commit you want to use.
-LLVM_COMMIT = "81d5412439efd0860c0a8dd51b831204f118d485"
-
-# The easiest way to calculate this for a new commit is to set it to empty and
-# then run a bazel build and it will report the digest necessary to cache the
-# archive and make the build reproducible.
-LLVM_SHA256 = "50b3ef31b228ea0c96ae074005bfac087c56e6a4b1c147592dd33f41cad0706b"
-
-http_archive(
-    name = "llvm-raw",
-    build_file_content = "# empty",
-    sha256 = LLVM_SHA256,
-    strip_prefix = "llvm-project-" + LLVM_COMMIT,
-    urls = ["https://github.com/llvm/llvm-project/archive/{commit}.tar.gz".format(commit = LLVM_COMMIT)],
-)
-
-load("@llvm-raw//utils/bazel:configure.bzl", "llvm_configure", "llvm_disable_optional_support_deps")
-
-llvm_configure(name = "llvm-project")
 ########################################################################################################################
