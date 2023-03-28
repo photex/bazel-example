@@ -9,10 +9,16 @@
 
 class Example
 {
-	int foo = 0;
+	ExampleData data;
 public:
 	Example(int const foo);
 
 	[[nodiscard]]
+	std::string GetName() const;
+
+	[[nodiscard]]
 	int GetFoo() const;
+
+	[[nodiscard]]
+	int GetBar() const;
 };

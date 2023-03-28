@@ -14,7 +14,9 @@ int main(int argc, char* argv[])
 
 	fmt::print("Howdy!! Oh my goodness I used Xcode to write this text.\n");
 
-	fmt::print("Blah blah blah Example.foo: {}\n", example.GetFoo());
+	fmt::print("Example.name: {}\n", example.GetName());
+	fmt::print("Example.foo: {}\n", example.GetFoo());
+	fmt::print("Example.bar: {}\n", example.GetBar());
 
 	return result;
 }
