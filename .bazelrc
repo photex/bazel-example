@@ -1,6 +1,6 @@
-query --enable_bzlmod
+#query --enable_bzlmod
 
-build --enable_bzlmod
+#build --enable_bzlmod
 
 # Prevent invalid caching if input files are modified during a build.
 build --experimental_guard_against_concurrent_changes
@@ -35,5 +35,8 @@ build --copt=-Wno-error=deprecated --host_copt=-Wno-error=deprecated
 # Always keep this at the end of the file so that user flags override.
 try-import %workspace%/user.bazelrc
 
+#
 # One example of how to use user.bazelrc is to enable disk caches:
 # build --disk_cache=/path/to/my/cache
+#
+# It's also possible to place this line in ~/.bazelrc
