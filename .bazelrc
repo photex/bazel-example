@@ -1,6 +1,3 @@
-#query --enable_bzlmod
-
-#build --enable_bzlmod
 
 # Prevent invalid caching if input files are modified during a build.
 build --experimental_guard_against_concurrent_changes
