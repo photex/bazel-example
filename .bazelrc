@@ -1,3 +1,6 @@
+# Disable the sandbox for this build. Primarily because the sandbox is only fast on Linux.
+build --spawn_strategy=local
+
 query --enable_bzlmod
 
 build --enable_bzlmod
@@ -8,28 +11,33 @@ build --experimental_guard_against_concurrent_changes
 # In opt mode, bazel by default builds both PIC and non-PIC object files for
 # tests vs binaries. We don't need this feature and it slows down opt builds
 # considerably.
-# TODO: This prevents rules_xcodeproj from functioning correctly
 #build --force_pic
 
 # Shared objects take up more space. With fast linkers and binaries that aren't
 # super large, the benefits of shared objects are minimal.
-build --dynamic_mode=off
-
-# Rely on compiler flags to compile with debug info/strip rather than stripping
-# based on compilation_mode.
-build --strip=never
+#build --dynamic_mode=off
 
 # Add layering check to all projects.
 build --features=layering_check
 
 # Force a modern c++ version
-build --cxxopt=-std=c++17 --host_cxxopt=-std=c++17
+build --cxxopt=-std=c++20 --host_cxxopt=-std=c++20
+build --per_file_copt=.*\.mm\$@-std=c++20
 
 # Annoy everyone until they address the issues
 build --copt=-Wall --copt=-Werror --copt=-Wno-error=unused --host_copt=-Wall
 
 # We like to be warned about deprecations but it shouldn't break the build
 build --copt=-Wno-error=deprecated --host_copt=-Wno-error=deprecated
+build --copt=-Wno-error=deprecated-non-prototype --host_copt=-Wno-error=deprecated-non-prototype
+
+cquery --define=apple.experimental.tree_artifact_outputs=1
+build --define=apple.experimental.tree_artifact_outputs=1
+
+# Uncomment for debugging
+#build -c dbg --copt="-g" --strip=never
+# Uncomment for release optimization
+#build -c opt
 
 # The user.bazelrc file is not checked in but available for local mods.
 # Always keep this at the end of the file so that user flags override.
