@@ -1,6 +1,8 @@
 # Disable the sandbox for this build. Primarily because the sandbox is only fast on Linux.
 build --spawn_strategy=local
 
+build --experimental_remote_cache_compression
+
 query --enable_bzlmod
 
 build --enable_bzlmod
